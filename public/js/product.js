@@ -18,11 +18,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Function to display product details on the page
     const displayProductDetails = (product) => {
-        // Convert price from USD to Ksh
-        const priceInKsh = product.price * 100; // Assuming 1 USD = 100 Ksh
+        // Convert price from USD to Ksh and round to two decimal places
+        const priceInKsh = (product.price * 100).toFixed(2); // Assuming 1 USD = 100 Ksh
 
         // Check if a discount is applied
-        const discountedPriceInKsh = product.discountPercentage ? priceInKsh * (1 - product.discountPercentage / 100) : priceInKsh;
+        const discountedPriceInKsh = product.discountPercentage ? (priceInKsh * (1 - product.discountPercentage / 100)).toFixed(2) : priceInKsh;
 
         const productDetailsContainer = document.getElementById("productDetails");
         productDetailsContainer.innerHTML = `
