@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function() {
             rows += `
                 <tr>
                     <td>${product.id}</td>
-                    <td>${product.title}</td>
+                    <td><a href="product.html?id=${product.id}">${product.title}</a></td>
                     <td>${product.description}</td>
                     <td>${product.discountPercentage}</td>
                     <td>${product.rating}</td>

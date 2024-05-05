@@ -1,3 +1,11 @@
 .custom-th{
     color: aqua;
 }
+
+body{
+    background-image: linear-gradient(to  right, #532e27, #bccfdb);
+}
+
+.header{
+    color: aqua;
+}
