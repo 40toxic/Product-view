@@ -1,15 +1,11 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // Function to extract product ID from URL
-    const getProductIdFromUrl = () => {
-        const urlParams = new URLSearchParams(window.location.search);
-        return urlParams.get('id');
-    };
-
     // Function to fetch product details from API
     const fetchProductDetails = async (productId) => {
         try {
             const response = await fetch(`https://dummyjson.com/products/${productId}`);
             const data = await response.json();
+            // Convert price from USD to Ksh
+            data.priceInKsh = data.price * 100;
             return data;
         } catch (error) {
             console.error('There was a problem with the fetch operation:', error);
@@ -26,6 +22,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 </div>
                 <div class="card-body">
                     <p>Description: ${product.description}</p>
+                    <p>Price: ${product.priceInKsh} Ksh</p>
                     <p>Discount Percentage: ${product.discountPercentage}</p>
                     <p>Rating: ${product.rating}</p>
                     <p>Stock: ${product.stock}</p>
