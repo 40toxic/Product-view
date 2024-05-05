@@ -7,7 +7,13 @@ document.addEventListener("DOMContentLoaded", function() {
         try {
             const response = await fetch("https://dummyjson.com/products");
             const data = await response.json();
-            products = data.products;
+            // Convert price from USD to Ksh for each product
+            products = data.products.map(product => {
+                return {
+                    ...product,
+                    price: product.price * 100 // Convert USD to Ksh
+                };
+            });
             displayProducts();
         } catch (error) {
             console.error('There was a problem with the fetch operation:', error);
@@ -30,6 +36,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     <td>${product.rating}</td>
                     <td>${product.stock}</td>
                     <td>${product.brand}</td>
+                    <td>${product.price}</td> <!-- Display price in Ksh -->
                     <td>${product.category}</td>
                     <td><img src="${product.thumbnail}" alt="${product.title}" style="width: 100px;"></td>
                 </tr>
