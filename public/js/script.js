@@ -27,16 +27,18 @@ document.addEventListener("DOMContentLoaded", function() {
         
         let rows = '';
         displayedProducts.forEach(product => {
+            const displayPrice = product.discountPercentage ? (product.price * (1 - product.discountPercentage / 100)) : product.price;
+            const formattedPrice = displayPrice.toFixed(2);
             rows += `
                 <tr>
                     <td>${product.id}</td>
                     <td><a href="product.html?id=${product.id}">${product.title}</a></td>
                     <td>${product.description}</td>
-                    <td>${product.discountPercentage}</td>
+                    <td>${product.discountPercentage ? `${product.discountPercentage}% off` : 'No discount'}</td>
                     <td>${product.rating}</td>
                     <td>${product.stock}</td>
                     <td>${product.brand}</td>
-                    <td>${product.price}</td> <!-- Display price in Ksh -->
+                    <td>${formattedPrice} Ksh</td> <!-- Display price in Ksh -->
                     <td>${product.category}</td>
                     <td><img src="${product.thumbnail}" alt="${product.title}" style="width: 100px;"></td>
                 </tr>

@@ -20,6 +20,10 @@ document.addEventListener("DOMContentLoaded", function() {
     const displayProductDetails = (product) => {
         // Convert price from USD to Ksh
         const priceInKsh = product.price * 100; // Assuming 1 USD = 100 Ksh
+
+        // Check if a discount is applied
+        const discountedPriceInKsh = product.discountPercentage ? priceInKsh * (1 - product.discountPercentage / 100) : priceInKsh;
+
         const productDetailsContainer = document.getElementById("productDetails");
         productDetailsContainer.innerHTML = `
             <div class="card">
@@ -28,11 +32,11 @@ document.addEventListener("DOMContentLoaded", function() {
                 </div>
                 <div class="card-body">
                     <p>Description: ${product.description}</p>
-                    <p>Discount Percentage: ${product.discountPercentage}</p>
+                    <p>Discount Percentage: ${product.discountPercentage ? product.discountPercentage + '%' : 'No discount'}</p>
                     <p>Rating: ${product.rating}</p>
                     <p>Stock: ${product.stock}</p>
                     <p>Brand: ${product.brand}</p>
-                    <p>Price: ${priceInKsh} Ksh</p> <!-- Display price in Ksh -->
+                    <p>Price: ${discountedPriceInKsh} Ksh</p> <!-- Display discounted or original price in Ksh -->
                     <p>Category: ${product.category}</p>
                     <img src="${product.thumbnail}" alt="${product.title}" style="width: 200px;">
                 </div>
